@@ -11,6 +11,7 @@
   width: 50px;
   height: 35px;
   border: solid 1px #444;
+  cursor: pointer;
 }
 .chat-window {
   height: 300px;

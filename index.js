@@ -9,10 +9,15 @@ const path = require("path");
 
 const io = require("socket.io")(server);
 
+// Used express.static to serve the static file index.html from public
 app.use(express.static(path.join(__dirname + "/public")));
 
 io.on("connection", (socket) => {
   console.log(`Connected with Socket [id: ${socket.id}]`);
+
+  socket.on("chat", (message) => {
+    console.log("From client:", message);
+  });
 });
 
 // To check whether server is working fine.
