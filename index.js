@@ -9,6 +9,17 @@ const path = require("path");
 
 const io = require("socket.io")(server);
 
+const mongoose = require("mongoose");
+const dbconnect = require("./dbconnect");
+
+dbconnect
+  .then(() => {
+    console.log("Database connected");
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+
 // Used express.static to serve the static file index.html from public
 app.use(express.static(path.join(__dirname + "/public")));
 
