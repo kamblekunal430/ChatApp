@@ -12,6 +12,9 @@ const io = require("socket.io")(server);
 const mongoose = require("mongoose");
 const dbconnect = require("./dbconnect");
 
+const chatMsg = require("./models/ChatModel");
+
+// connecting to the database
 dbconnect
   .then(() => {
     console.log("Database connected");
