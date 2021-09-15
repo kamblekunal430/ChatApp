@@ -29,10 +29,10 @@ app.use(express.static(path.join(__dirname + "/public")));
 io.on("connection", (socket) => {
   console.log(`Connected with Socket [id: ${socket.id}]`);
 
-  socket.on("chat", (message) => {
-    //console.log("From client:", message);
+  socket.on("chat", (data) => {
+    //console.log("From client:", data);
 
-    io.emit("chat", message);
+    io.emit("chat", data);
   });
 });
 

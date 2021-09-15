@@ -64,5 +64,16 @@ h1 {
 }
 
 .render-message {
-  padding: 5px;
+  padding: 10px;
+  border-radius: 10px;
+  height: max-content;
+  border: solid gray 0.5px;
+  margin: 5px;
+  word-wrap: break-word;
+}
+
+h3 {
+  height: max-content;
+  margin: 5px 0;
+  font-size: 20px;
 }
