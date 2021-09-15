@@ -53,7 +53,7 @@ socket.on("notifyTyping", (data) => {
   if (data) {
     typing.innerText = `${data.username} is typing...`;
   } else {
-    typing.innerText = "";
+    typing.innerHTML = `&emsp;`;
   }
 });
 
