@@ -6,7 +6,7 @@ $("#chatSection").hide();
 const chat = document.getElementById("chatform");
 const username = document.getElementById("username");
 const chatinput = document.getElementById("chatinput");
-
+const typing = document.getElementById("typing");
 const login = document.getElementById("loginform");
 
 login.addEventListener("submit", (event) => {
@@ -15,10 +15,20 @@ login.addEventListener("submit", (event) => {
   $("#loginSection").hide();
 });
 
+//notify typing to the users
+chatinput.addEventListener("input", (event) => {
+  socket.emit("typing", { username: username.value });
+});
+
+// stop typing
+chatinput.addEventListener("keyup", (event) => {
+  socket.emit("stoptyping", "");
+});
+
 // prevent reload on sending the message
 chat.addEventListener("submit", (event) => {
   event.preventDefault();
-  socket.emit("chat", { msg: chatinput.value, username: username.value });
+  socket.emit("chat", { message: chatinput.value, username: username.value });
   chatinput.value = "";
 });
 
@@ -28,7 +38,7 @@ const chatwindow = document.getElementById("chatwindow");
 const renderMessage = (data) => {
   const div = document.createElement("div");
   div.classList.add("render-message");
-  div.innerHTML = `<h3>${data.msg}</h3> &emsp; by: ${data.username}`;
+  div.innerHTML = `<h3>${data.message}</h3> &emsp; by: ${data.username}`;
   chatwindow.appendChild(div);
 };
 
@@ -36,6 +46,15 @@ socket.on("received", (data) => {
   //console.log("Form server:", message);
 
   renderMessage(data);
+});
+
+socket.on("notifyTyping", (data) => {
+  //console.log(data);
+  if (data) {
+    typing.innerText = `${data.username} is typing...`;
+  } else {
+    typing.innerText = "";
+  }
 });
 
 $("#chatinput").keyup(function (e) {

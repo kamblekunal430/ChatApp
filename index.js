@@ -40,6 +40,15 @@ io.on("connection", (socket) => {
       io.emit("received", data);
     });
   });
+
+  socket.on("typing", (user) => {
+    //console.log(user.username, "is typing");
+    socket.broadcast.emit("notifyTyping", user);
+  });
+
+  socket.on("stoptyping", (data) => {
+    socket.broadcast.emit("notifyTyping", data);
+  });
 });
 
 // To check whether server is working fine.
