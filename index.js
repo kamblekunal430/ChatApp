@@ -13,6 +13,7 @@ const mongoose = require("mongoose");
 const dbconnect = require("./dbconnect");
 
 const chatMsg = require("./models/ChatModel");
+const Chat = require("./models/ChatModel");
 
 // connecting to the database
 dbconnect
@@ -31,8 +32,13 @@ io.on("connection", (socket) => {
 
   socket.on("chat", (data) => {
     //console.log("From client:", data);
-
-    io.emit("chat", data);
+    const chatMsg = new Chat({
+      message: data.message,
+      username: data.username,
+    });
+    chatMsg.save().then(() => {
+      io.emit("received", data);
+    });
   });
 });
 

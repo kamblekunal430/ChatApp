@@ -28,11 +28,11 @@ const chatwindow = document.getElementById("chatwindow");
 const renderMessage = (data) => {
   const div = document.createElement("div");
   div.classList.add("render-message");
-  div.innerHTML = `<h3>${data.msg}</h3> By: ${data.username}`;
+  div.innerHTML = `<h3>${data.msg}</h3> &emsp; by: ${data.username}`;
   chatwindow.appendChild(div);
 };
 
-socket.on("chat", (data) => {
+socket.on("received", (data) => {
   //console.log("Form server:", message);
 
   renderMessage(data);

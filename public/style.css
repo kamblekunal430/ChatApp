@@ -66,7 +66,7 @@ h1 {
 .render-message {
   padding: 10px;
   border-radius: 10px;
-  height: max-content;
+  height: fit-content;
   border: solid gray 0.5px;
   margin: 5px;
   word-wrap: break-word;
