@@ -11,7 +11,7 @@ const io = require("socket.io")(server);
 
 const mongoose = require("mongoose");
 const dbconnect = require("./dbconnect");
-
+const chatRouter = require("./routes/chatRoute");
 const chatMsg = require("./models/ChatModel");
 const Chat = require("./models/ChatModel");
 
@@ -26,6 +26,8 @@ dbconnect
 
 // Used express.static to serve the static file index.html from public
 app.use(express.static(path.join(__dirname + "/public")));
+
+app.use("/chats", chatRouter);
 
 io.on("connection", (socket) => {
   console.log(`Connected with Socket [id: ${socket.id}]`);

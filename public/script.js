@@ -48,6 +48,7 @@ socket.on("received", (data) => {
   renderMessage(data);
 });
 
+// nofify if the anyone is typing
 socket.on("notifyTyping", (data) => {
   //console.log(data);
   if (data) {
@@ -57,8 +58,22 @@ socket.on("notifyTyping", (data) => {
   }
 });
 
+// sending msg on pressing enter key
 $("#chatinput").keyup(function (e) {
   if (e.keyCode == 13) {
     $(this).trigger("submit");
   }
 });
+
+// IIFE to load initial chat messages
+(function () {
+  fetch("/chats")
+    .then((data) => {
+      return data.json();
+    })
+    .then((data) => {
+      data.map((msg) => {
+        renderMessage(msg);
+      });
+    });
+})();
