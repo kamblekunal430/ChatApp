@@ -5,11 +5,31 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Chat App</title>
+
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <div id="container">
       <h1>Chat App</h1>
+
+      <!--Login section to set username-->
+      <div id="loginSection">
+        <form class="login-form" id="loginform">
+          <label class="user-label">
+            Enter a username:
+            <input type="text" class="user-input" id="username" />
+          </label>
+          &emsp;
+          <input
+            type="submit"
+            class="user-submit"
+            id="usersubmit"
+            value="Start"
+          />
+        </form>
+      </div>
+
+      <!-- Chat section to diplay the chats-->
       <div id="chatSection">
         <div class="chat-window" id="chatwindow"></div>
         <form class="chat-form" id="chatform">
@@ -17,11 +37,12 @@
             Enter a message:
             <input type="text" class="chat-input" id="chatinput" />
           </label>
+          &emsp;
           <input
             type="submit"
             class="chat-submit"
             id="chatsubmit"
-            value="send"
+            value="SEND"
           />
         </form>
       </div>
